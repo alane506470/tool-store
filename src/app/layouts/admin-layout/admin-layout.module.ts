@@ -15,13 +15,16 @@ import { NotificationsComponent }   from '../../pages/notifications/notification
 import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {WebcamModule} from 'ngx-webcam';
+import { WebcamComponent } from 'app/pages/webcam/webcam.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
-    NgbModule
+    NgbModule,
+    WebcamModule
   ],
   declarations: [
     DashboardComponent,
@@ -31,6 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TypographyComponent,
     IconsComponent,
     MapsComponent,
+    WebcamComponent,
     NotificationsComponent,
   ]
 })

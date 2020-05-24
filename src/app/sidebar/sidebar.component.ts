@@ -10,7 +10,9 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard',     title: 'Dashboard',         icon: 'nc-bank',       class: '' },
-    { path: '/webcam', title: '人臉辨識', icon: 'nc-diamond', class: ''}
+    { path: '/webcam', title: '人臉辨識', icon: 'nc-diamond', class: ''},
+    { path: '/video-steam', title: '人臉偵測' , icon: 'nc-pin-3',  class: ''},
+    {path: '/drag-picture', title: '圖片辨識', icon: 'nc-bell-55', class: ''}
     // { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
     // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
     // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },

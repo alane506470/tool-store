@@ -17,14 +17,17 @@ import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {WebcamModule} from 'ngx-webcam';
 import { WebcamComponent } from 'app/pages/webcam/webcam.component';
-
+import { DrapPictureComponent } from 'app/pages/drap-picture/drap-picture.component';
+import { VideoStreamComponent } from 'app/pages/video-stream/video-stream.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     NgbModule,
-    WebcamModule
+    WebcamModule,
+    FlexLayoutModule
   ],
   declarations: [
     DashboardComponent,
@@ -36,6 +39,8 @@ import { WebcamComponent } from 'app/pages/webcam/webcam.component';
     MapsComponent,
     WebcamComponent,
     NotificationsComponent,
+    DrapPictureComponent,
+    VideoStreamComponent,
   ]
 })
 

@@ -1,0 +1,40 @@
+<div fxFlex fxLayout="column" fxLayoutGap="gap" fxLayout.gt-lg="row">
+  <div fxLayout="column" fxLayoutGap="gap" fxFlex="col(2)" fxLayout.gt-sm="row">
+
+    <div  fxFlex="auto" fxLayout="column" fxFlex.gt-sm="col(4)">
+      <div fxFlex fxLayout="row">
+        拖拉要辨識的圖片
+      </div>
+      <div fxFlex fxLayout="row">
+        <img src="../../../assets/img/angularpicture/shark.jpg" width="20%" cdkDrag>
+        <img src="../../../assets/img/angularpicture/shark.jpg" width="20%" cdkDrag>
+        <img src="../../../assets/img/angularpicture/shark.jpg" width="20%" cdkDrag>
+        <img src="../../../assets/img/angularpicture/shark.jpg" width="20%" cdkDrag>
+      </div>
+    </div>
+
+    <div fxFlex="auto" fxFlex.gt-sm="col(4)">
+      <input type="file" accept=".jpg, .jpeg, .png" (change)="fileChange($event.target.files)">
+      <img *ngIf="imgURL" [src]="imgURL" >
+    </div>
+
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="gap" fxFlex="col(2)" fxLayout.gt-sm="row">
+
+    <div fxFlex="auto" fxFlex.gt-sm="col(4)">
+      <!-- <div ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                Base drop zone
+            </div> -->
+    </div>
+
+    <div fxFlex="auto" fxFlex.gt-sm="col(4)">
+
+    </div>
+
+  </div>
+</div>

@@ -13,6 +13,8 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { WebcamComponent } from './pages/webcam/webcam.component';
+import { DragDropDirective } from './shared/direct/drag-drop.directive';
+import { MaterialModule } from './shared/material-components.module';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { WebcamComponent } from './pages/webcam/webcam.component';
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

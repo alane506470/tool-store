@@ -80,7 +80,7 @@
               "node_modules/bootstrap-notify/bootstrap-notify.js"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.scss",
               "src/assets/sass/paper-dashboard.scss"
             ],
             "assets": [

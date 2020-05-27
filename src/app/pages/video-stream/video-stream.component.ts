@@ -4,10 +4,11 @@ import { HttpServiceService } from 'app/http-service/http-service.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { ScrollbarDirective } from 'app/shared/scrollbar/scrollbar.directive';
+// import { ScrollbarDirective } from 'app/shared/scrollbar/scrollbar.directive';
 import { MediaObserver } from '@angular/flex-layout';
 import sortBy from 'lodash-es/sortBy';
 import { map, takeUntil } from 'rxjs/operators';
+import { chatDemoData } from './chat.demo';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-video-stream',
@@ -27,13 +28,15 @@ export class VideoStreamComponent implements OnInit {
   activeChat: any;
   chatDemoData = [];
 
-  @ViewChild('messagesScroll', { read: ScrollbarDirective, static: true }) messagesScroll: ScrollbarDirective;
+  // @ViewChild('messagesScroll', { read: ScrollbarDirective, static: true }) messagesScroll: ScrollbarDirective;
 
   constructor( private httpClient: HttpClient, private cd: ChangeDetectorRef,
     private mediaObserver: MediaObserver, private _sanitizer: DomSanitizer) { }
   ngOnInit(): void {
     // this.getImage();
     this.initChat()
+    this.offlinechats = sortBy(chatDemoData, 'lastMessageTime').reverse();
+    this.activeChat = this.offlinechats[0];
   }
   initChat() {
     const temp :chatInfo = {

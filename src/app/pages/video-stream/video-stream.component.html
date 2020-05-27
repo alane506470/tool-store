@@ -1,34 +1,84 @@
-<div fxFlex="50%" fxLayout="column">
+<div fxFlex="30%" fxLayout="column">
   <h3 class="qwe">{{isLogin}}</h3>
-  <button mat-button color="primary">Primary</button>
   <img id="bg" class="videourl">
   <div fxFlex fxLayout="row">
-    <mat-form-field appearance="fill">
+    <mat-form-field fxFlex="70%" appearance="fill">
       <mat-label>使用者名稱</mat-label>
       <input matInput [(ngModel)]="name">
     </mat-form-field>
-    <button mat-flat-button color="primary" (click)="registered()">註冊</button>
+    <button fxFlex="30%" mat-flat-button color="primary" (click)="registered()">註冊</button>
   </div>
   <button mat-raised-button color="accent" (click)="recog()">登入</button>
 
 </div>
 
-<div fxLayout=50%>
-  <mat-list class="list mat-elevation-z1">
-    <h3 mat-subheader>上線中</h3>
-    <mat-divider></mat-divider>
-    <mat-list-item *ngFor="let chat of chats" matRipple>
-      <img mat-list-avatar [src]="chat.picture">
-      <h3 class="name" matLine>{{chat.name}}</h3>
-      <p class="message secondary-text" matLine>{{chat.lastMessage}}</p>
-    </mat-list-item>
-    <mat-divider></mat-divider>
+<div class="chat-container" fxLayout="row" fxFlex=70%>
+  <div fxFlex=30%>
+    <mat-list class="list mat-elevation-z1">
+      <h4 mat-subheader>上線中</h4>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let chat of chats" matRipple>
+        <img mat-list-avatar [src]="chat.picture">
+        <h3 class="name" matLine>{{chat.name}}</h3>
+        <p class="message secondary-text" matLine>{{chat.lastMessage}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
 
-    <h3 mat-subheader>離線中</h3>
-    <mat-list-item *ngFor="let chat of offlinechats" matRipple>
-      <img mat-list-avatar [src]="chat.picture">
-      <h3 class="name" matLine>{{chat.name}}</h3>
-      <p class="message secondary-text" matLine>{{chat.lastMessage}}</p>
-    </mat-list-item>
-  </mat-list>
+      <h3 mat-subheader>離線中</h3>
+      <mat-list-item *ngFor="let chat of offlinechats" matRipple>
+        <img mat-list-avatar [src]="chat.picture">
+        <h3 class="name" matLine>{{chat.name}}</h3>
+        <p class="message secondary-text" matLine>{{chat.lastMessage}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div  fxFlex=70%>
+    <div class="activate-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+      <img class="avatar" [src]="activeChat.picture">
+      <div fxLayout="column">
+        <span class="name">{{ activeChat.name }}</span>
+        <span class="status secondary-text">Online</span>
+      </div>
+
+      <div class="actions" fxLayout="row" fxLayoutAlign="end center">
+        <button mat-icon-button>
+          <mat-icon>attach_file</mat-icon>
+        </button>
+
+        <button mat-icon-button [matMenuTriggerFor]="chatMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="chat-message" *ngFor="let message of offlinechats[0].messages" [ngSwitch]="message.who"
+               fxLayout="column" fxLayoutAlign="end start">
+            <div class="partner" *ngSwitchCase="'partner'" fxFlexAlign="start" fxLayout="row"
+                 fxLayoutAlign="start start">
+              <img class="avatar" [src]="activeChat.picture">
+              <span class="message card">{{ message.message }}</span>
+            </div>
+            <div class="me" *ngSwitchCase="'me'" fxFlexAlign="end" fxLayout="row" fxLayoutAlign="end start">
+              <span class="message background-primary color-primary-contrast">{{ message.message }}</span>
+              <img class="avatar" src="assets/img/avatars/1.jpg">
+            </div>
+          </div>
+  </div>
+
+  <!-- <div class="current-contact" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+          <button type="button" mat-icon-button (click)="drawer.open()" fxHide.gt-sm>
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <img class="avatar" [src]="activeChat.picture">
+
+          <div fxLayout="column">
+            <span class="name">{{ activeChat.name }}</span>
+            <span class="status secondary-text">Online</span>
+          </div>
+
+        </div> -->
+
+
+
 </div>

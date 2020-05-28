@@ -45,3 +45,45 @@ height: 64px;
   text-align: center;
 }
 
+.list-online ,.list-off {
+  background-color: white;
+}
+
+.h4 {
+  color: #0a0301;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+}
+
+.message{
+  padding: 24px;
+  background-color: white;
+    height: 430px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.card {
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 8px;
+  position: relative;
+  box-shadow: 0 0 0 -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-radius: 8px;
+}
+
+.background-primary {
+  color: #fff;
+  background: #1976d2;
+  margin-right: 12px;
+  padding: 8px;
+  /* position: relative; */
+  box-shadow: 0 0 0 -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-radius: 8px;
+}
+
+.input {
+  padding-left: 24px;
+    padding-right: 24px;
+}
+

@@ -28,30 +28,27 @@ export class VideoStreamComponent implements OnInit {
   activeChat: any;
   chatDemoData = [];
 
+  replyCtrl: FormControl;
+
   // @ViewChild('messagesScroll', { read: ScrollbarDirective, static: true }) messagesScroll: ScrollbarDirective;
 
   constructor( private httpClient: HttpClient, private cd: ChangeDetectorRef,
     private mediaObserver: MediaObserver, private _sanitizer: DomSanitizer) { }
   ngOnInit(): void {
     // this.getImage();
+    this.replyCtrl = new FormControl();
     this.initChat()
-    this.offlinechats = sortBy(chatDemoData, 'lastMessageTime').reverse();
+    // this.offlinechats = sortBy(chatDemoData, 'lastMessageTime').reverse();
     this.activeChat = this.offlinechats[0];
+    console.log(this.offlinechats)
   }
   initChat() {
-    const temp :chatInfo = {
-      picture: "assets/img/avatars/2.jpg",
-      name: 'Alan',
-      lastMessage: '今天吃甚麼',
-      lastMessageTime: moment().subtract(170, 'minutes'),
-      messages: []
-    }
     this.httpClient.get(this.get_user_path).subscribe((data: Array<any>) => {
       // console.log(data)
 
       data.forEach((fileInfo) => {
         // console.log(fileInfo)
-        let temp : chatInfo = {
+        const temp: chatInfo = {
           name: '',
           picture: '',
           messages: [],
@@ -108,6 +105,31 @@ export class VideoStreamComponent implements OnInit {
 
   // 聊天室
 
+  send() {
+    if (this.replyCtrl.value) {
+      this.offlinechats[0].messages.push({
+        message: this.replyCtrl.value,
+        when: moment(),
+        who: 'me'
+      });
+
+      this.replyCtrl.reset();
+      // this.cd.markForCheck();
+      // setTimeout(() => {
+      // tslint:disable-next-line: max-line-length
+      //   this.messagesScroll.scrollbarRef.getScrollElement().scrollTo(0, this.messagesScroll.scrollbarRef.getScrollElement().scrollHeight);
+      // }, 10);
+    }
+
+}
+
+setActiveChat(chat) {
+  this.activeChat = chat;
+
+  // if (this.drawerMode === 'over') {
+  //   this.drawerOpen = false;
+  // }
+}
 }
 
 interface chatInfo {

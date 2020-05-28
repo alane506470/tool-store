@@ -1,6 +1,89 @@
 .videourl {
   content: url("http://localhost:4000/video_feed");
 }
-@import '~@angular/material/theming';
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.toolbar {
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+}
+
+.list {
+  height: 100%;
+    overflow-y: scroll;
+}
+
+.container {
+  height: 100%;
+    width: 100%;
+    max-width: 80%;
+}
+
+.content-conatiner{
+  margin-left: 280px;
+  overflow: hidden;
+}
+
+.activate-container{
+  padding-left: 24px;
+padding-right: 24px;
+height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+}
+
+.chat-container {
+    height: 550px;
+}
+
+.avatar{
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.list-online ,.list-off {
+  background-color: white;
+}
+
+.h4 {
+  color: #0a0301;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+}
+
+.message{
+  padding: 24px;
+  background-color: white;
+    height: 430px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.card {
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 8px;
+  position: relative;
+  box-shadow: 0 0 0 -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-radius: 8px;
+}
+
+.background-primary {
+  color: #fff;
+  background: #1976d2;
+  margin-right: 12px;
+  padding: 8px;
+  /* position: relative; */
+  box-shadow: 0 0 0 -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-radius: 8px;
+}
+
+.input {
+  padding-left: 24px;
+    padding-right: 24px;
+}
 

@@ -4,10 +4,11 @@ import { HttpServiceService } from 'app/http-service/http-service.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { ScrollbarDirective } from 'app/shared/scrollbar/scrollbar.directive';
+// import { ScrollbarDirective } from 'app/shared/scrollbar/scrollbar.directive';
 import { MediaObserver } from '@angular/flex-layout';
 import sortBy from 'lodash-es/sortBy';
 import { map, takeUntil } from 'rxjs/operators';
+import { chatDemoData } from './chat.demo';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-video-stream',
@@ -27,28 +28,27 @@ export class VideoStreamComponent implements OnInit {
   activeChat: any;
   chatDemoData = [];
 
-  @ViewChild('messagesScroll', { read: ScrollbarDirective, static: true }) messagesScroll: ScrollbarDirective;
+  replyCtrl: FormControl;
+
+  // @ViewChild('messagesScroll', { read: ScrollbarDirective, static: true }) messagesScroll: ScrollbarDirective;
 
   constructor( private httpClient: HttpClient, private cd: ChangeDetectorRef,
     private mediaObserver: MediaObserver, private _sanitizer: DomSanitizer) { }
   ngOnInit(): void {
     // this.getImage();
+    this.replyCtrl = new FormControl();
     this.initChat()
+    // this.offlinechats = sortBy(chatDemoData, 'lastMessageTime').reverse();
+    this.activeChat = this.offlinechats[0];
+    console.log(this.offlinechats)
   }
   initChat() {
-    const temp :chatInfo = {
-      picture: "assets/img/avatars/2.jpg",
-      name: 'Alan',
-      lastMessage: '今天吃甚麼',
-      lastMessageTime: moment().subtract(170, 'minutes'),
-      messages: []
-    }
     this.httpClient.get(this.get_user_path).subscribe((data: Array<any>) => {
       // console.log(data)
 
       data.forEach((fileInfo) => {
         // console.log(fileInfo)
-        let temp : chatInfo = {
+        const temp: chatInfo = {
           name: '',
           picture: '',
           messages: [],
@@ -105,6 +105,31 @@ export class VideoStreamComponent implements OnInit {
 
   // 聊天室
 
+  send() {
+    if (this.replyCtrl.value) {
+      this.offlinechats[0].messages.push({
+        message: this.replyCtrl.value,
+        when: moment(),
+        who: 'me'
+      });
+
+      this.replyCtrl.reset();
+      // this.cd.markForCheck();
+      // setTimeout(() => {
+      // tslint:disable-next-line: max-line-length
+      //   this.messagesScroll.scrollbarRef.getScrollElement().scrollTo(0, this.messagesScroll.scrollbarRef.getScrollElement().scrollHeight);
+      // }, 10);
+    }
+
+}
+
+setActiveChat(chat) {
+  this.activeChat = chat;
+
+  // if (this.drawerMode === 'over') {
+  //   this.drawerOpen = false;
+  // }
+}
 }
 
 interface chatInfo {

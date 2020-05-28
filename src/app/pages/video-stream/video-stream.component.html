@@ -1,12 +1,12 @@
 <div fxFlex="30%" fxLayout="column">
   <h3 class="qwe">{{isLogin}}</h3>
   <img id="bg" class="videourl">
-  <div fxFlex fxLayout="row">
+  <div fxLayout="row">
     <mat-form-field fxFlex="70%" appearance="fill">
       <mat-label>使用者名稱</mat-label>
       <input matInput [(ngModel)]="name">
     </mat-form-field>
-    <button fxFlex="30%" mat-flat-button color="primary" (click)="registered()">註冊</button>
+    <button fxFlex="30%"  mat-flat-button color="primary" (click)="registered()">註冊</button>
   </div>
   <button mat-raised-button color="accent" (click)="recog()">登入</button>
 
@@ -43,7 +43,7 @@
         <img class="avatar" [src]="activeChat.picture">
         <div fxLayout="column">
           <span class="name">{{ activeChat.name }}</span>
-          <span class="status secondary-text">Online</span>
+          <span class="status secondary-text">{{activeChat.islogin}}</span>
         </div>
       </div>
       <div class="actions" fxLayout="row" fxLayoutAlign="end center">
@@ -67,7 +67,7 @@
         </div>
         <div class="me" *ngSwitchCase="'me'" fxFlexAlign="end" fxLayout="row" fxLayoutAlign="end start">
           <span class="background-primary color-primary-contrast">{{ message.message }}</span>
-          <img class="avatar" src="assets/img/avatars/1.jpg">
+          <img class="avatar" [src]="activeChat.picture">
         </div>
       </div>
     </div>

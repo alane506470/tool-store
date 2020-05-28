@@ -39,8 +39,6 @@ export class VideoStreamComponent implements OnInit {
     this.replyCtrl = new FormControl();
     this.initChat()
     // this.offlinechats = sortBy(chatDemoData, 'lastMessageTime').reverse();
-    this.activeChat = this.offlinechats[0];
-    console.log(this.offlinechats)
   }
   initChat() {
     this.httpClient.get(this.get_user_path).subscribe((data: Array<any>) => {
@@ -52,6 +50,7 @@ export class VideoStreamComponent implements OnInit {
           name: '',
           picture: '',
           messages: [],
+          islogin: '離線',
         lastMessage: '',
         lastMessageTime: moment().subtract(170, 'minutes'),
         };
@@ -62,6 +61,7 @@ export class VideoStreamComponent implements OnInit {
       })
       // console.log(this.chatDemoData)
       this.offlinechats = sortBy(this.chatDemoData, 'lastMessageTime').reverse();
+      this.activeChat = this.offlinechats[0];
     })
 
   }
@@ -79,6 +79,7 @@ export class VideoStreamComponent implements OnInit {
       } else {
         this.isLogin = '註冊失敗'
       }
+      this.initChat();
       this.name = ''
     }
   })
@@ -90,10 +91,14 @@ export class VideoStreamComponent implements OnInit {
       console.log(result);
       if (result) {
         const index = this.offlinechats.findIndex((chat) => chat.name === result)
-        console.log(index)
-        this.chats.push(this.offlinechats[index])
+        console.log(this.offlinechats[index].islogin)
+        this.offlinechats[index].islogin = '上線中';
+        this.chats.push(this.offlinechats[index]);
+        this.setActiveChat(this.offlinechats[index]);
         this.offlinechats.splice(index, 1);
         this.isLogin = '登入成功: ' + result;
+      } else {
+        this.isLogin = '登入失敗';
       }
     }
   })
@@ -138,6 +143,7 @@ interface chatInfo {
   messages: Array<message>;
   lastMessage: string;
   lastMessageTime;
+  islogin: string;
 }
 
 interface message {

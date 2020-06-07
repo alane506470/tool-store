@@ -15,8 +15,8 @@ export class DrapPictureComponent implements OnInit {
   public message: string;
   // uploader: FileUploader;
   hasBaseDropZoneOver: boolean;
-  images_path = 'http://localhost:5001/imageExample';
-  recogImage_path = 'http://769d071c.ngrok.io/recog-image'
+  images_path = 'https://saveimage-api-0607.herokuapp.com/imageExample';
+  recogImage_path = 'https://saveimage-api-0607.herokuapp.com/recog-image'
   rowGroups = [];
   files = [];
   items = [];
